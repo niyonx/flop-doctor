@@ -1,0 +1,182 @@
+{
+  "range": {
+    "days": 90
+  },
+  "accounts": [
+    {
+      "id": "ig-main",
+      "platform": "instagram",
+      "username": "maker",
+      "metrics_status": "ok",
+      "posts_with_views": 6,
+      "median_views": 1000,
+      "followers": 2400
+    }
+  ],
+  "posts": [
+    {
+      "id": "p-win",
+      "post_id": "p-win",
+      "title": "Stop rinsing your rice",
+      "caption": "Stop rinsing your rice. Here's why #cooking #rice",
+      "thumbnail_url": null,
+      "media_url": "https://cdn.example.com/x.mp4",
+      "media_type": "video",
+      "published_at": "2026-11-08T01:34:31.000Z",
+      "origin": "postonce",
+      "destinations": [
+        {
+          "platform": "instagram",
+          "account_id": "ig-main",
+          "username": "maker",
+          "url": "https://example.com/p-win",
+          "published_at": "2026-11-08T01:34:31.000Z",
+          "views": 6400,
+          "likes": 320,
+          "comments": 21,
+          "shares": 2,
+          "saves": 3,
+          "engagement_rate": 0.05,
+          "views_vs_account_median": 6.4
+        }
+      ]
+    },
+    {
+      "id": "p-win2",
+      "post_id": "p-win2",
+      "title": "3 knife mistakes",
+      "caption": "3 knife mistakes you make daily #knives #cooking",
+      "thumbnail_url": null,
+      "media_url": "https://cdn.example.com/x.mp4",
+      "media_type": "video",
+      "published_at": "2026-10-30T17:34:31.000Z",
+      "origin": "postonce",
+      "destinations": [
+        {
+          "platform": "instagram",
+          "account_id": "ig-main",
+          "username": "maker",
+          "url": "https://example.com/p-win2",
+          "published_at": "2026-10-30T17:34:31.000Z",
+          "views": 3100,
+          "likes": 155,
+          "comments": 10,
+          "shares": 2,
+          "saves": 3,
+          "engagement_rate": 0.05,
+          "views_vs_account_median": 3.1
+        }
+      ]
+    },
+    {
+      "id": "p-ok",
+      "post_id": "p-ok",
+      "title": "My fridge setup",
+      "caption": "My fridge setup for the week, everything I prep on Sunday and why it saves me time #mealprep #fridge #organize #sunday #prep",
+      "thumbnail_url": null,
+      "media_url": "https://cdn.example.com/x.mp4",
+      "media_type": "video",
+      "published_at": "2026-11-03T21:34:31.000Z",
+      "origin": "postonce",
+      "destinations": [
+        {
+          "platform": "instagram",
+          "account_id": "ig-main",
+          "username": "maker",
+          "url": "https://example.com/p-ok",
+          "published_at": "2026-11-03T21:34:31.000Z",
+          "views": 1000,
+          "likes": 50,
+          "comments": 3,
+          "shares": 2,
+          "saves": 3,
+          "engagement_rate": 0.05,
+          "views_vs_account_median": 1.0
+        }
+      ]
+    },
+    {
+      "id": "p-flop",
+      "post_id": "p-flop",
+      "title": "Sunday prep vlog",
+      "caption": "So today I wanted to show you a little bit of my Sunday prep routine and how I like to organize everything #mealprep #vlog #sunday #routine #prep",
+      "thumbnail_url": null,
+      "media_url": "https://cdn.example.com/x.mp4",
+      "media_type": "video",
+      "published_at": "2026-11-12T05:34:31.000Z",
+      "origin": "postonce",
+      "destinations": [
+        {
+          "platform": "instagram",
+          "account_id": "ig-main",
+          "username": "maker",
+          "url": "https://example.com/p-flop",
+          "published_at": "2026-11-12T05:34:31.000Z",
+          "views": 200,
+          "likes": 10,
+          "comments": 0,
+          "shares": 2,
+          "saves": 3,
+          "engagement_rate": 0.05,
+          "views_vs_account_median": 0.2
+        }
+      ]
+    },
+    {
+      "id": "p-flop2",
+      "post_id": "p-flop2",
+      "title": "Kitchen tour",
+      "caption": "Hey guys welcome back, today a kitchen tour #kitchen #tour #home #decor",
+      "thumbnail_url": null,
+      "media_url": "https://cdn.example.com/x.mp4",
+      "media_type": "video",
+      "published_at": "2026-10-26T13:34:31.000Z",
+      "origin": "postonce",
+      "destinations": [
+        {
+          "platform": "instagram",
+          "account_id": "ig-main",
+          "username": "maker",
+          "url": "https://example.com/p-flop2",
+          "published_at": "2026-10-26T13:34:31.000Z",
+          "views": 300,
+          "likes": 15,
+          "comments": 1,
+          "shares": 2,
+          "saves": 3,
+          "engagement_rate": 0.05,
+          "views_vs_account_median": 0.3
+        }
+      ]
+    },
+    {
+      "id": "p-young",
+      "post_id": "p-young",
+      "title": "Brand new reel from today",
+      "caption": "New one #test",
+      "thumbnail_url": null,
+      "media_url": "https://cdn.example.com/x.mp4",
+      "media_type": "video",
+      "published_at": "2026-11-16T04:34:31.000Z",
+      "origin": "postonce",
+      "destinations": [
+        {
+          "platform": "instagram",
+          "account_id": "ig-main",
+          "username": "maker",
+          "url": "https://example.com/p-young",
+          "published_at": "2026-11-16T04:34:31.000Z",
+          "views": 50,
+          "likes": 2,
+          "comments": 0,
+          "shares": 2,
+          "saves": 3,
+          "engagement_rate": 0.05,
+          "views_vs_account_median": 0.05
+        }
+      ]
+    }
+  ],
+  "truncated": false,
+  "refreshing": false
+}
