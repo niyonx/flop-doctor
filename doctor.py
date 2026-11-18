@@ -113,14 +113,39 @@ def cmd_scan(a):
 
 
 # ------------------------------------------------------------------ inspect
-def ffmpeg(*args):
-    r = subprocess.run(["ffmpeg", "-hide_banner", "-loglevel", "error", "-y", *map(str, args)], capture_output=True, text=True)
+_FF = {}
+
+
+def ff_bin(name="ffmpeg", need=None):
+    """The ffmpeg/ffprobe to run: $FFMPEG / $FFPROBE, else the one on PATH, else Homebrew's ffmpeg-full.
+    need: a filter that must exist (Homebrew's plain ffmpeg 9 ships without libass and freetype, so no text filters)."""
+    if (name, need) in _FF:
+        return _FF[(name, need)]
+    env = os.environ.get(name.upper())
+    candidates = [env] if env else [shutil.which(name), f"/opt/homebrew/opt/ffmpeg-full/bin/{name}", f"/usr/local/opt/ffmpeg-full/bin/{name}"]
+    for c in candidates:
+        if not c or not os.path.exists(c):
+            continue
+        if need:
+            filters = subprocess.run([c, "-hide_banner", "-filters"], capture_output=True, text=True).stdout
+            if not re.search(rf"\s{need}\s", filters):
+                continue
+        _FF[(name, need)] = c
+        return c
+    if need:
+        die(f"your {name} can't draw text (no '{need}' filter). Homebrew's ffmpeg 9 left out libass and freetype: "
+            f"run `brew install ffmpeg-full` (it installs next to ffmpeg), or set {name.upper()}=/path/to/a/full/{name}.")
+    die(f"{name} not found. Install ffmpeg (https://ffmpeg.org/download.html) or set {name.upper()}.")
+
+
+def ffmpeg(*args, need=None):
+    r = subprocess.run([ff_bin("ffmpeg", need), "-hide_banner", "-loglevel", "error", "-y", *map(str, args)], capture_output=True, text=True)
     if r.returncode:
         die("ffmpeg failed: " + r.stderr.strip()[-600:])
 
 
 def probe(path):
-    out = subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration:stream=width,height,codec_type", "-of", "json", str(path)],
+    out = subprocess.run([ff_bin("ffprobe"), "-v", "error", "-show_entries", "format=duration:stream=width,height,codec_type", "-of", "json", str(path)],
                          capture_output=True, text=True).stdout
     j = json.loads(out or "{}")
     v = next((s for s in j.get("streams", []) if s.get("codec_type") == "video"), {})
@@ -227,6 +252,8 @@ def cmd_patterns(a):
 
 # ------------------------------------------------------------------ recut
 def cmd_recut(a):
+    if a.hook:
+        ff_bin("ffmpeg", "drawtext")
     src = Path(a.video)
     if not src.exists():
         die(f"{src} not found")
@@ -249,7 +276,7 @@ def cmd_recut(a):
         args += ["-vf", ",".join(vf)]
     args += ["-c:v", "libx264", "-preset", "veryfast", "-crf", "19", "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "160k",
              "-movflags", "+faststart", a.out]
-    ffmpeg(*args)
+    ffmpeg(*args, need="drawtext" if a.hook else None)
     print(f"wrote {a.out} ({probe(a.out)['seconds']}s, was {info['seconds']}s)")
 
 

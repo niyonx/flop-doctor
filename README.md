@@ -11,7 +11,7 @@ Most "why did my reel flop" advice is generic. This compares a flop with **your 
 
 ## What you need
 
-- Python 3.9+ and [ffmpeg](https://ffmpeg.org/download.html). No pip installs.
+- Python 3.9+ and [ffmpeg](https://ffmpeg.org/download.html). No pip installs. `recut --hook` needs an ffmpeg with freetype: on a Mac, Homebrew's plain `ffmpeg` (9.x) leaves it out, so run `brew install ffmpeg-full` (found automatically) or point `FFMPEG` at a full build.
 - A [PostOnce](https://postonce.to?utm_source=github&utm_campaign=flop-doctor) API key (`POSTONCE_API_KEY`, Preferences → API) with your TikTok, Instagram, YouTube or Facebook accounts connected. PostOnce reads views, likes, comments, shares and saves for each post, including ones you posted outside PostOnce, and compares each with the account's median. The key needs the `accounts:read`, `media:read`, `media:write`, `posts:read` and `posts:write` scopes.
 
 ## Use it as a Claude skill

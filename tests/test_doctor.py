@@ -81,8 +81,14 @@ def main():
     VIDEO = work / "src.mp4"
     subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-f", "lavfi", "-i", "testsrc2=size=540x960:rate=30:duration=6",
                     "-f", "lavfi", "-i", "sine=frequency=300:duration=6", "-shortest", VIDEO], check=True)
-    if FIXTURE.name == "fixture-analytics.json":  # point the made-up posts' media at the stand-in
+    if FIXTURE.name == "fixture-analytics.json":
+        # shift the made-up dates so the newest post ("p-young") is 5 hours old today, and point media at the stand-in
+        parse = lambda s: dt.datetime.fromisoformat(s.replace("Z", "+00:00"))
+        newest = max(parse(p["published_at"]) for p in DATA["posts"])
+        shift = dt.datetime.now(dt.timezone.utc) - dt.timedelta(hours=5) - newest
         for p in DATA["posts"]:
+            for obj in [p, *p.get("destinations", [])]:
+                obj["published_at"] = (parse(obj["published_at"]) + shift).strftime("%Y-%m-%dT%H:%M:%S.000Z")
             if p.get("media_url"):
                 p["media_url"] = f"http://127.0.0.1:{PORT}/media-files/{p['id']}.mp4"
     scan = doc("scan", "--days", "90").stdout
